@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    tools:context=".RankingFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="40sp"
+            android:text="Leaderboard"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/bronze_cup"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/silver_cup"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/gold_cup"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/diamond_cup"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/diamond_cup"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/diamond_cup"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@drawable/round_back_white_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:padding="15dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_back_grey">
+
+                    <TextView
+                        android:id="@+id/firstRanker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="1st"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_profile_color_1"
+                        android:layout_marginRight="15dp"
+                        android:layout_toEndOf="@id/firstRanker"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="user 1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/user"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="10dp"
+                        android:text="123"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_toStartOf="@id/score"/>
+
+                    <ImageView
+                        android:id="@+id/score"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_sphinx"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomCalendarView" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#FFFFFF</item> <!-- White text color -->
+        <item name="android:calendarTextColor">#FFFFFF</item> <!-- Optional: You can also set this for specific parts -->
+        <item name="android:text">@color/white</item>
+    </style>
+</resources>
