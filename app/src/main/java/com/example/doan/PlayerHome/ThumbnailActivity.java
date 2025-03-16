@@ -1,10 +1,12 @@
-package com.example.doan;
+package com.example.doan.PlayerHome;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.doan.R;
 
 public class ThumbnailActivity extends AppCompatActivity {
 

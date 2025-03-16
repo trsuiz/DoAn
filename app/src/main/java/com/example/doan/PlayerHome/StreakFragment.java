@@ -1,4 +1,4 @@
-package com.example.doan;
+package com.example.doan.PlayerHome;
 
 import android.os.Bundle;
 
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+
+import com.example.doan.R;
 
 import java.util.Calendar;
 

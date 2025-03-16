@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primary"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".PlayerHome.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,6 +23,9 @@
             android:textSize="30sp"/>
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -40,133 +43,159 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/btnAboutYourself1"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="About yourself: Lesson 1"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnAboutYourself2"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="About yourself: Lesson 2"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnAboutYourself3"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="About yourself: Lesson 3"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnAboutYourself4"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="About yourself: Lesson 4"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDailyRoutines1"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="Daily routines: Lesson 1"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDailyRoutines2"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="Daily routines: Lesson 2"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDailyRoutines3"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="Daily routines: Lesson 3"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnDailyRoutines4"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="Daily routines: Lesson 4"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/round_back_white_20"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
                 android:id="@+id/btnFood1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Food"
+                android:layout_width="364dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:text="Food: Lesson 1"
                 android:textColor="@color/white"
-                android:textSize="40dp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Business &amp; money"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Education"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Technology"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Sport &amp; Exercise"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Tourism &amp; Travel"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Space Exploration"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Short Stories"
-                android:textSize="40dp"
-                android:textColor="@color/white"
+                android:textSize="26sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>

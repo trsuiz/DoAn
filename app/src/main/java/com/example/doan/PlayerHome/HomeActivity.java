@@ -1,25 +1,29 @@
-package com.example.doan;
+package com.example.doan.PlayerHome;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.CalendarView;
-import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.doan.DatabaseHelper;
+import com.example.doan.PlayerHome.StreakFragment;
+import com.example.doan.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelper db;
+    SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        databaseHelper = new DatabaseHelper(this);
-
+        /*db = new DatabaseHelper(this);
+        database = db.getWritableDatabase();
+        db.dropTables(database);
+        db.displayAllTablesAndData();*/
 /*// Open the database in writable mode
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
