@@ -15,7 +15,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "LearningApp.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "PasswordHash TEXT NOT NULL, " +
                 "Email TEXT NOT NULL UNIQUE, " +
                 "FullName TEXT, " +
+                "Role TEXT NOT NULL, " +
                 "CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
         db.execSQL("CREATE TABLE Topics (" +
@@ -124,13 +125,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertUser(String username, String passwordHash, String email, String fullName) {
+    public void insertUser(String username, String passwordHash, String email, String fullName, String role) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Username", username);
         values.put("PasswordHash", passwordHash);
         values.put("Email", email);
         values.put("FullName", fullName);
+        values.put("Role", role);
 
         db.insert("Users", null, values);
     }
@@ -386,8 +388,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Insert sample Users
-        insertUser("admin", "admin", "admin@gmail.com", "Helen");
-        insertUser("player", "player", "player@gmail.com", "Jane");
+        insertUser("admin", "admin", "admin@gmail.com", "Helen", "admin");
+        insertUser("player", "player", "player@gmail.com", "Jane", "player");
 
         // Insert sample Topics
         insertTopic("About yourself", "Learn about you.");
