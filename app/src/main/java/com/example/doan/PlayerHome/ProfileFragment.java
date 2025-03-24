@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.doan.EditProfileActivity;
 import com.example.doan.R;
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +33,8 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button editProfileBtn;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -80,14 +84,30 @@ public class ProfileFragment extends Fragment {
         videoView.start();
 
         usernameTextView = view.findViewById(R.id.usernameTextView); // Đảm bảo ID đúng
+        editProfileBtn = view.findViewById(R.id.editProfileBtn);
+
+
+
+        // ✅ Mở EditProfileActivity khi nhấn nút
+        editProfileBtn.setOnClickListener(v -> EditProfileActivity.openEditProfile(getActivity()));
+
 
         // ✅ Lấy FullName từ SharedPreferences
         SharedPreferences preferences = requireActivity().getSharedPreferences("USER_PREFS", Context.MODE_PRIVATE);
-        String fullName = preferences.getString("FULL_NAME", "Guest"); // Mặc định là "Guest"
+        String fullName = preferences.getString("USERNAME", "Guest"); // Mặc định là "Guest"
 
         usernameTextView.setText(fullName); // Hiển thị lên TextView
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Cập nhật FullName sau khi chỉnh sửa
+        SharedPreferences preferences = requireActivity().getSharedPreferences("USER_PREFS", Context.MODE_PRIVATE);
+        String fullName = preferences.getString("FULL_NAME", "Guest");
+        usernameTextView.setText(fullName);
     }
 // KHANG THEM
 

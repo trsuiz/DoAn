@@ -70,6 +70,7 @@ public class Login extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("FULL_NAME", fullName);
+                editor.putString("USERNAME", username);
                 editor.apply();
 
                 // Chuyển đến màn hình chính
