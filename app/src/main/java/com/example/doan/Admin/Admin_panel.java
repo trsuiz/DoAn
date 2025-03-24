@@ -2,11 +2,13 @@ package com.example.doan.Admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -28,6 +30,7 @@ public class Admin_panel extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_panel);
 
+        // Khi an vao nut menu, hien thi danh sach ben trai
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         menuIcon = findViewById(R.id.menu_icon);
@@ -77,6 +80,19 @@ public class Admin_panel extends AppCompatActivity {
 
                 default:
                     return false;
+            }
+        });
+
+        // Chuyen tu Adminpanel sang TopicCreate
+        CardView lessonManagementCard = findViewById(R.id.card_lesson_management); // Add this ID to your XML
+
+        // Set click listener
+        lessonManagementCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start TopicCreate activity
+                Intent intent = new Intent(Admin_panel.this, TopicCreate.class);
+                startActivity(intent);
             }
         });
     }
