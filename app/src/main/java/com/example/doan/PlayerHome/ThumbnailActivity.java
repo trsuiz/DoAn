@@ -21,5 +21,6 @@ public class ThumbnailActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }, 2000);
+
     }
 }
