@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primary"
-    android:orientation="vertical"
-    tools:context=".PlayerHome.ProfileFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <!-- Background Video -->
+    <VideoView
+        android:id="@+id/videoBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scaleY="1.26"
+        />
 
+    <!-- Overlay to make content readable -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+      />
+
+    <!-- Main Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="40sp"
-            android:text="Profile"
-            android:layout_centerInParent="true"
+            android:text="English Learner Profile"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="30sp"/>
-    </RelativeLayout>
-    
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:textSize="28sp"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"/>
+
+        <!-- Profile Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_profile_color"/>
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_profile_color"
+                android:background="@drawable/round_back_white_20"
+                android:layout_gravity="center"/>
+
             <TextView
+                android:id="@+id/usernameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="User"
-                android:textColor="@color/white"
+                android:text="Username"
+                android:textSize="22sp"
+                android:textColor="@color/primary"
                 android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:layout_gravity="center"
@@ -57,116 +74,100 @@
                 android:text="Edit Profile"
                 android:textAllCaps="false"
                 android:textColor="@color/primary"/>
-
-            <LinearLayout
-                android:background="@drawable/round_back_white_20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="40dp"
-                android:padding="15dp"
-                android:orientation="vertical">
-
-                <!--NightMode-->
-                <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/nightModeIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_night"
-                        android:background="@drawable/round_back_night_mode"
-                        android:padding="12dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="Night Mode"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@id/nightModeIcon"/>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:switchMinWidth="50dp"
-                        android:theme="@style/nightModeSwitch"/>
-
-                </RelativeLayout>
-                <!--Notification-->
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/notificationIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_notification"
-                        android:background="@drawable/round_back_notification"
-                        android:padding="12dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="Notification"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@id/notificationIcon"/>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:switchMinWidth="50dp"
-                        android:theme="@style/notificationSwitch"/>
-
-                </RelativeLayout>
-                <!--Private Account-->
-                <RelativeLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/privateAccountIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_night"
-                        android:background="@drawable/round_back_private_account"
-                        android:padding="12dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="Private Account"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@id/privateAccountIcon"/>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:switchMinWidth="50dp"
-                        android:theme="@style/privateAccountSwitch"/>
-
-                </RelativeLayout>
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <!-- Progress Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:background="@drawable/round_back_white_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vocabulary Mastery: 75%"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Points: 1200"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Stats Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:background="@drawable/round_back_white_20"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Streak: 5 days"
+                android:textColor="@color/primary"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Lessons: 15"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Achievements Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:background="@drawable/round_back_white_20"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Achievements"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏆 1000 Words Learned"
+                android:textColor="@color/primary"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎯 7-Day Streak"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 50 Lessons Completed"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

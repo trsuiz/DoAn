@@ -20,6 +20,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //KHANG THEM
+        String fullName = getIntent().getStringExtra("FULL_NAME");
+
+        // Lưu vào Bundle để gửi sang Fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("FULL_NAME", fullName);
+
+        // Truyền Bundle sang ProfileFragment
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, profileFragment) // Thay đúng ID của container fragment
+                .commit();
+        //KHANG THEM
+
         /*db = new DatabaseHelper(this);
         database = db.getWritableDatabase();
         db.dropTables(database);

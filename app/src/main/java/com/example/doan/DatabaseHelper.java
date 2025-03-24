@@ -137,6 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("Users", null, values);
     }
 
+
     public void insertTopic(String topicName, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

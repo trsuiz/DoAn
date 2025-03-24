@@ -1,6 +1,7 @@
 package com.example.doan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class Login extends AppCompatActivity {
         /*SQLiteDatabase db = databaseHelper.getWritableDatabase();*/
         databaseHelper = new DatabaseHelper(this);
         /*databaseHelper.onUpgrade(db,1,2);*/
-        /*databaseHelper.insertSampleData();*/
+        databaseHelper.insertSampleData();
         databaseHelper.logAllDatabaseData();
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
@@ -56,28 +57,41 @@ public class Login extends AppCompatActivity {
         }
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        String query = "SELECT Role FROM Users WHERE Username = ? AND PasswordHash = ?";
+        String query = "SELECT FullName, Role FROM Users WHERE Username = ? AND PasswordHash = ?";
         Cursor cursor = db.rawQuery(query, new String[]{username, password});
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
+                String fullName = cursor.getString(cursor.getColumnIndexOrThrow("FullName"));
                 String role = cursor.getString(cursor.getColumnIndexOrThrow("Role"));
                 cursor.close();
 
+                // ✅ Lưu FullName vào SharedPreferences
+                SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("FULL_NAME", fullName);
+                editor.apply();
+
+                // Chuyển đến màn hình chính
+                Intent intent;
                 if ("admin".equalsIgnoreCase(role)) {
-                    startActivity(new Intent(Login.this, Admin_panel.class));
-                    finish();
+                    intent = new Intent(Login.this, Admin_panel.class);
                 } else if ("player".equalsIgnoreCase(role)) {
-                    startActivity(new Intent(Login.this, HomeActivity.class));
-                    finish();
+                    intent = new Intent(Login.this, HomeActivity.class);
                 } else {
                     Toast.makeText(this, "Unknown role. Contact support.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 cursor.close();
             }
         }
     }
+
+
 
 }
