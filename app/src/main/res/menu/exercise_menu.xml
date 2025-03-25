@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_add"
-        android:title="Thêm bài học" />
+        android:title="Thêm bài tập" />
     <item
         android:id="@+id/menu_delete"
-        android:title="Xoá bài học" />
+        android:title="Xoá bài tập" />
     <item
         android:id="@+id/menu_edit"
-        android:title="Sửa bài học" />
+        android:title="Sửa bài tập" />
 </menu>

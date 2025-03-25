@@ -89,6 +89,7 @@ public class TopicCreate extends AppCompatActivity {
         popupMenu.getMenuInflater().inflate(R.menu.topic_menu, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
+            Log.d("TopicActivity", "Menu item clicked: " + item.getTitle());
             String title = item.getTitle().toString();
 
             switch (title) {
@@ -105,6 +106,8 @@ public class TopicCreate extends AppCompatActivity {
                     return false;
             }
         });
+
+
 
         popupMenu.show();
     }
@@ -156,17 +159,18 @@ public class TopicCreate extends AppCompatActivity {
     //////////////////////////////////////////
     //Xoa chu de
     private void openDeleteTopicDialog() {
+        Log.d("TopicActivity", "openDeleteTopicDialog called");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Xoá chủ đề");
 
-        // Create layout container
+        // Create a layout container for the dialog
         LinearLayout dialogLayout = new LinearLayout(this);
         dialogLayout.setOrientation(LinearLayout.VERTICAL);
         dialogLayout.setPadding(32, 32, 32, 32);
 
-        // Fetch topics from database
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+
         List<Integer> topicIDs = new ArrayList<>();
         List<String> topicNames = new ArrayList<>();
         List<CheckBox> checkBoxes = new ArrayList<>();
@@ -176,18 +180,18 @@ public class TopicCreate extends AppCompatActivity {
                 do {
                     int topicID = cursor.getInt(cursor.getColumnIndexOrThrow("TopicID"));
                     String topicName = cursor.getString(cursor.getColumnIndexOrThrow("TopicName"));
+
                     topicIDs.add(topicID);
                     topicNames.add(topicName);
 
-                    // Layout for each topic row
+                    // Create layout for each topic row
                     LinearLayout topicRow = new LinearLayout(this);
                     topicRow.setOrientation(LinearLayout.HORIZONTAL);
                     topicRow.setPadding(0, 8, 0, 8);
 
                     TextView topicText = new TextView(this);
                     topicText.setText(topicName);
-                    topicText.setLayoutParams(new LinearLayout.LayoutParams(
-                            0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+                    topicText.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
                     CheckBox checkBox = new CheckBox(this);
                     checkBoxes.add(checkBox);
@@ -207,41 +211,47 @@ public class TopicCreate extends AppCompatActivity {
             db.close();
         }
 
-        // Delete Button
+        // Delete button
         Button deleteButton = new Button(this);
         deleteButton.setText("Xoá");
         deleteButton.setOnClickListener(v -> {
-            // Collect selected topics
             List<Integer> topicsToDelete = new ArrayList<>();
+
             for (int i = 0; i < checkBoxes.size(); i++) {
                 if (checkBoxes.get(i).isChecked()) {
                     topicsToDelete.add(topicIDs.get(i));
                 }
             }
 
+            Log.d("TopicActivity", "Selected topics to delete: " + topicsToDelete);
+
             if (topicsToDelete.isEmpty()) {
-                Toast.makeText(this, "Vui lòng chọn ít nhất một chủ đề.", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(this, "Vui lòng chọn ít nhất một chủ đề để xóa.", Toast.LENGTH_SHORT).show();
+            } else {
+                showDeleteConfirmationDialog(topicsToDelete);
             }
-            // Show confirmation dialog
-            showDeleteConfirmationDialog(topicsToDelete);
         });
 
         dialogLayout.addView(deleteButton);
         builder.setView(dialogLayout);
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Huỷ", null);
         builder.show();
     }
 
     private void showDeleteConfirmationDialog(List<Integer> topicIDs) {
         AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
-        confirmBuilder.setTitle("Bạn có muốn xoá?");
+        confirmBuilder.setTitle("Bạn có chắc muốn xoá các chủ đề này?");
 
         LinearLayout confirmLayout = new LinearLayout(this);
         confirmLayout.setOrientation(LinearLayout.VERTICAL);
         confirmLayout.setPadding(32, 32, 32, 32);
 
-        // Checkbox row
+        // Confirmation message
+        TextView message = new TextView(this);
+        message.setText("Bạn không thể khôi phục hành động này.");
+        confirmLayout.addView(message);
+
+        // Confirmation checkboxes (all must be checked)
         LinearLayout checkboxRow = new LinearLayout(this);
         checkboxRow.setOrientation(LinearLayout.HORIZONTAL);
         checkboxRow.setGravity(Gravity.CENTER);
@@ -255,11 +265,10 @@ public class TopicCreate extends AppCompatActivity {
 
         confirmLayout.addView(checkboxRow);
 
-        // Buttons layout
+        // Buttons
         LinearLayout buttonsLayout = new LinearLayout(this);
         buttonsLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonsLayout.setGravity(Gravity.END);
-        buttonsLayout.setPadding(0, 16, 0, 0);
 
         Button cancelButton = new Button(this);
         cancelButton.setText("Cancel");
@@ -269,21 +278,22 @@ public class TopicCreate extends AppCompatActivity {
         confirmDeleteButton.setText("Delete");
         confirmDeleteButton.setOnClickListener(v -> {
             boolean allChecked = confirmBoxes.stream().allMatch(CheckBox::isChecked);
+            Log.d("TopicActivity", "All checkboxes checked: " + allChecked);
+
             if (allChecked) {
                 deleteSelectedTopics(topicIDs);
                 confirmBuilder.create().dismiss();
             } else {
-                Toast.makeText(this, "Vui lòng chọn tất cả các ô để xác nhận.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vui lòng xác nhận bằng cách chọn tất cả các ô.", Toast.LENGTH_SHORT).show();
             }
         });
 
         buttonsLayout.addView(cancelButton);
         buttonsLayout.addView(confirmDeleteButton);
-
         confirmLayout.addView(buttonsLayout);
+
         confirmBuilder.setView(confirmLayout);
         confirmBuilder.show();
-
     }
 
     private void deleteSelectedTopics(List<Integer> topicIDs) {
@@ -294,19 +304,20 @@ public class TopicCreate extends AppCompatActivity {
         try {
             for (int topicID : topicIDs) {
                 int rowsDeleted = db.delete("Topics", "TopicID = ?", new String[]{String.valueOf(topicID)});
-                Log.d(TAG, "Deleting TopicID " + topicID + ", rowsDeleted = " + rowsDeleted);
+                Log.d("TopicActivity", "Deleted TopicID " + topicID + ", rows: " + rowsDeleted);
             }
             db.setTransactionSuccessful();
             Toast.makeText(this, "Chủ đề đã được xóa thành công.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(TAG, "Error deleting topics: ", e);
+            Log.e("TopicActivity", "Error deleting topics: ", e);
             Toast.makeText(this, "Lỗi khi xóa chủ đề.", Toast.LENGTH_SHORT).show();
         } finally {
             db.endTransaction();
             db.close();
-            displayTopics(); // Refresh UI
+            displayTopics();  // Refresh UI
         }
     }
+
 
 
 

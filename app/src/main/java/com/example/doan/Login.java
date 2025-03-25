@@ -38,7 +38,8 @@ public class Login extends AppCompatActivity {
         /*SQLiteDatabase db = databaseHelper.getWritableDatabase();*/
         databaseHelper = new DatabaseHelper(this);
         /*databaseHelper.onUpgrade(db,1,2);*/
-        databaseHelper.insertSampleData();
+        /*databaseHelper.clearAllData();*/
+        /*databaseHelper.insertSampleData();*/
         databaseHelper.logAllDatabaseData();
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);

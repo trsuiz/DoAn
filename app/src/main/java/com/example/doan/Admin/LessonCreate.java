@@ -53,6 +53,7 @@ public class LessonCreate extends AppCompatActivity {
         Intent intent = getIntent();
         topicID = getIntent().getIntExtra("TopicID", -1); // Default to -1 if not found
         topicName = getIntent().getStringExtra("TopicName");
+        Log.d("LessonActivity", "Received TopicID: " + topicID);
         Log.d("LessonCreate", "Received TopicID: " + topicID + ", TopicName: " + topicName);
 
 
@@ -102,6 +103,7 @@ public class LessonCreate extends AppCompatActivity {
         popupMenu.getMenuInflater().inflate(R.menu.lesson_menu, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
+            Log.d("LessonActivity", "Popup item clicked: " + item.getTitle());
             String title = item.getTitle().toString();
 
             switch (title) {
@@ -159,38 +161,42 @@ public class LessonCreate extends AppCompatActivity {
     }
 
     private void openDeleteLessonDialog() {
+        Log.d("LessonActivity", "openDeleteLessonDialog called");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Xoá bài học");
 
+        // Create layout container for dialog
         LinearLayout dialogLayout = new LinearLayout(this);
         dialogLayout.setOrientation(LinearLayout.VERTICAL);
         dialogLayout.setPadding(32, 32, 32, 32);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+
         List<Integer> lessonIDs = new ArrayList<>();
         List<String> lessonNames = new ArrayList<>();
         List<CheckBox> checkBoxes = new ArrayList<>();
 
         try (Cursor cursor = db.rawQuery(
                 "SELECT LessonID, LessonName FROM Lessons WHERE TopicID = ?",
-                new String[]{String.valueOf(topicID)})) {
-
+                new String[]{String.valueOf(topicID)}))
+        { // Filter by TopicID
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     int lessonID = cursor.getInt(cursor.getColumnIndexOrThrow("LessonID"));
                     String lessonName = cursor.getString(cursor.getColumnIndexOrThrow("LessonName"));
+
                     lessonIDs.add(lessonID);
                     lessonNames.add(lessonName);
 
+                    // Create layout for each lesson row
                     LinearLayout lessonRow = new LinearLayout(this);
                     lessonRow.setOrientation(LinearLayout.HORIZONTAL);
                     lessonRow.setPadding(0, 8, 0, 8);
 
                     TextView lessonText = new TextView(this);
                     lessonText.setText(lessonName);
-                    lessonText.setLayoutParams(new LinearLayout.LayoutParams(
-                            0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+                    lessonText.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
                     CheckBox checkBox = new CheckBox(this);
                     checkBoxes.add(checkBox);
@@ -198,52 +204,59 @@ public class LessonCreate extends AppCompatActivity {
                     lessonRow.addView(lessonText);
                     lessonRow.addView(checkBox);
                     dialogLayout.addView(lessonRow);
+
                 } while (cursor.moveToNext());
             } else {
                 Toast.makeText(this, "Không có bài học nào để xóa.", Toast.LENGTH_SHORT).show();
                 return;
             }
         } catch (Exception e) {
-            Log.e(TAG, "Error fetching lessons: ", e);
-            Toast.makeText(this, "Lỗi khi lấy bài học.", Toast.LENGTH_SHORT).show();
-            return;
+            Log.e("LessonActivity", "Error fetching lessons: ", e);
         } finally {
             db.close();
         }
 
+        // Delete button
         Button deleteButton = new Button(this);
         deleteButton.setText("Xoá");
         deleteButton.setOnClickListener(v -> {
             List<Integer> lessonsToDelete = new ArrayList<>();
+
             for (int i = 0; i < checkBoxes.size(); i++) {
                 if (checkBoxes.get(i).isChecked()) {
                     lessonsToDelete.add(lessonIDs.get(i));
                 }
             }
 
+            Log.d("LessonActivity", "Selected lessons to delete: " + lessonsToDelete);
+
             if (lessonsToDelete.isEmpty()) {
-                Toast.makeText(this, "Vui lòng chọn ít nhất một bài học.", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(this, "Vui lòng chọn ít nhất một bài học để xóa.", Toast.LENGTH_SHORT).show();
+            } else {
+                showDeleteLessonConfirmationDialog(lessonsToDelete);
             }
-            showDeleteConfirmationDialog(lessonsToDelete);
         });
 
         dialogLayout.addView(deleteButton);
         builder.setView(dialogLayout);
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Huỷ", null);
         builder.show();
     }
 
 
-    private void showDeleteConfirmationDialog(List<Integer> lessonIDs) {
+
+    private void showDeleteLessonConfirmationDialog(List<Integer> lessonIDs) {
         AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
-        confirmBuilder.setTitle("Bạn có muốn xoá?");
+        confirmBuilder.setTitle("Bạn có chắc muốn xoá các bài học này?");
 
         LinearLayout confirmLayout = new LinearLayout(this);
         confirmLayout.setOrientation(LinearLayout.VERTICAL);
         confirmLayout.setPadding(32, 32, 32, 32);
 
-        // Checkbox row
+        TextView message = new TextView(this);
+        message.setText("Bạn không thể khôi phục hành động này.");
+        confirmLayout.addView(message);
+
         LinearLayout checkboxRow = new LinearLayout(this);
         checkboxRow.setOrientation(LinearLayout.HORIZONTAL);
         checkboxRow.setGravity(Gravity.CENTER);
@@ -257,35 +270,36 @@ public class LessonCreate extends AppCompatActivity {
 
         confirmLayout.addView(checkboxRow);
 
-        // Buttons layout
         LinearLayout buttonsLayout = new LinearLayout(this);
         buttonsLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonsLayout.setGravity(Gravity.END);
-        buttonsLayout.setPadding(0, 16, 0, 0);
 
         Button cancelButton = new Button(this);
-        cancelButton.setText("Cancel");
+        cancelButton.setText("Huỷ");
         cancelButton.setOnClickListener(v -> confirmBuilder.create().dismiss());
 
         Button confirmDeleteButton = new Button(this);
-        confirmDeleteButton.setText("Delete");
+        confirmDeleteButton.setText("Xoá");
         confirmDeleteButton.setOnClickListener(v -> {
             boolean allChecked = confirmBoxes.stream().allMatch(CheckBox::isChecked);
+            Log.d("LessonActivity", "All checkboxes checked: " + allChecked);
+
             if (allChecked) {
                 deleteSelectedLessons(lessonIDs);
                 confirmBuilder.create().dismiss();
             } else {
-                Toast.makeText(this, "Vui lòng chọn tất cả các ô để xác nhận.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vui lòng xác nhận bằng cách chọn tất cả các ô.", Toast.LENGTH_SHORT).show();
             }
         });
 
         buttonsLayout.addView(cancelButton);
         buttonsLayout.addView(confirmDeleteButton);
-
         confirmLayout.addView(buttonsLayout);
+
         confirmBuilder.setView(confirmLayout);
         confirmBuilder.show();
     }
+
 
     private void deleteSelectedLessons(List<Integer> lessonIDs) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -295,19 +309,20 @@ public class LessonCreate extends AppCompatActivity {
         try {
             for (int lessonID : lessonIDs) {
                 int rowsDeleted = db.delete("Lessons", "LessonID = ?", new String[]{String.valueOf(lessonID)});
-                Log.d(TAG, "Deleting LessonID " + lessonID + ", rowsDeleted = " + rowsDeleted);
+                Log.d("LessonActivity", "Deleted LessonID " + lessonID + ", rows: " + rowsDeleted);
             }
             db.setTransactionSuccessful();
             Toast.makeText(this, "Bài học đã được xóa thành công.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(TAG, "Error deleting lessons: ", e);
+            Log.e("LessonActivity", "Error deleting lessons: ", e);
             Toast.makeText(this, "Lỗi khi xóa bài học.", Toast.LENGTH_SHORT).show();
         } finally {
             db.endTransaction();
             db.close();
-            displayLessons(); // Refresh lesson list
+            displayLessons();  // Refresh lessons list
         }
     }
+
 
 
 
@@ -514,7 +529,9 @@ public class LessonCreate extends AppCompatActivity {
     }
 
     private void openLessonDetails(int lessonID, String lessonName) {
-        // Intent to open lesson details or editing screen
-        Toast.makeText(this, "Opening lesson: " + lessonName, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ExerciseCreate.class); // Replace with your actual activity class
+        intent.putExtra("LessonID", lessonID);
+        intent.putExtra("LessonName", lessonName); // Optional, if you want to pass the lesson name as well
+        startActivity(intent);
     }
 }
