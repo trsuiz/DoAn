@@ -17,9 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "LearningApp.db";
     private static final int DATABASE_VERSION = 2;
 
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -389,8 +391,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Insert sample Users
-        insertUser("admin", "admin", "admin@gmail.com", "Helen", "admin");
-        insertUser("player", "player", "player@gmail.com", "Jane", "player");
+       // insertUser("admin", "admin", "admin@gmail.com", "Helen", "admin");
+        //insertUser("player", "player", "player@gmail.com", "Jane", "player");
 
         // Insert sample Topics
         insertTopic("About yourself", "Learn about you.");
@@ -589,6 +591,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+
+    public void updateUserName(String userId, String newName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("FullName", newName);
+
+        db.update("Users", values, "UserID=?", new String[]{userId});
+        db.close();
+    }
+
+    public String getUserName(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String fullName = null;
+
+        Cursor cursor = db.rawQuery("SELECT FullName FROM Users WHERE Email = ?", new String[]{email});
+        if (cursor.moveToFirst()) {
+            fullName = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+
+        return fullName;
+    }
+
+
+
+
 
 }
 

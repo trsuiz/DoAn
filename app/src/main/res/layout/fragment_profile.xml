@@ -56,25 +56,27 @@
                 android:id="@+id/usernameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
-                android:textSize="22sp"
-                android:textColor="@color/primary"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:shadowColor="#261414"
+                android:text="Username"
+                android:textColor="@color/cyan"
+                android:textColorHighlight="#CBD3F8F5"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/round_back_secondary_100"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_back_secondary_100"
                 android:text="Edit Profile"
                 android:textAllCaps="false"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/material_dynamic_neutral100" />
 
         </LinearLayout>
 
@@ -171,5 +173,19 @@
                 android:textColor="@color/light_yellow"
                 android:textSize="18sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_back_secondary_100"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="@color/material_dynamic_neutral100" />
+
     </LinearLayout>
 </FrameLayout>

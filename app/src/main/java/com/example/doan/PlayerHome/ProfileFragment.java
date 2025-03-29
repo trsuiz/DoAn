@@ -1,6 +1,7 @@
 package com.example.doan.PlayerHome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,13 +16,19 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.doan.EditProfileActivity;
+import com.example.doan.Login;
 import com.example.doan.R;
+import com.google.firebase.auth.FirebaseAuth;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    private FirebaseAuth mAuth;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,6 +104,21 @@ public class ProfileFragment extends Fragment {
         String fullName = preferences.getString("USERNAME", "Guest"); // Mặc định là "Guest"
 
         usernameTextView.setText(fullName); // Hiển thị lên TextView
+
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        Button logoutBtn = view.findViewById(R.id.logoutBtn);
+        logoutBtn.setOnClickListener(v -> {
+            mAuth.signOut(); // Đăng xuất khỏi Firebase
+
+            // Chuyển về màn hình đăng nhập
+            Intent intent = new Intent(getActivity(), Login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
 
         return view;
     }

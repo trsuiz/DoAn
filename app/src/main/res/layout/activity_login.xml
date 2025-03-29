@@ -1,38 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="16dp"
     tools:context=".Login">
+
+    <!-- Video Background -->
+    <VideoView
+        android:id="@+id/videoBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rotation="-0"
+        android:scaleX="1.12"
+        android:scaleY="1.45" />
+
+    <!-- Overlay to improve readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        /> <!-- Màu đen trong suốt -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/ic_profile"/>
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:src="@drawable/logoapp" />
 
         <EditText
             android:id="@+id/username_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="Username"
+            android:background="@drawable/rounded_corner"
+            android:hint="Email"
+            android:inputType="text"
+            android:padding="18dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_corner"
-            android:padding="18dp"
-            android:inputType="text" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/password_input"
@@ -59,11 +71,13 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/register_redirect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create new account"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp"
+            android:onClick="redirectToRegister"/>
     </LinearLayout>
 </RelativeLayout>

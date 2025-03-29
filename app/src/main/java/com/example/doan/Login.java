@@ -2,12 +2,13 @@ package com.example.doan;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +18,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.doan.Admin.Admin_panel;
 import com.example.doan.PlayerHome.HomeActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
     private EditText usernameInput, passwordInput;
     private Button loginBtn;
-    private DatabaseHelper databaseHelper;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,65 +38,64 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        /*SQLiteDatabase db = databaseHelper.getWritableDatabase();*/
-        databaseHelper = new DatabaseHelper(this);
-        /*databaseHelper.onUpgrade(db,1,2);*/
-        /*databaseHelper.clearAllData();*/
-        /*databaseHelper.insertSampleData();*/
-        databaseHelper.logAllDatabaseData();
+        mAuth = FirebaseAuth.getInstance();
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
         loginBtn = findViewById(R.id.login_btn);
-
         loginBtn.setOnClickListener(v -> loginUser());
+
+
+
+
+        VideoView videoView = findViewById(R.id.videoBackground);
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bg_login);
+        videoView.setVideoURI(videoUri);
+        videoView.setOnPreparedListener(mp -> {
+            mp.setLooping(true); // Lặp lại video
+            //mp.setVolume(0, 0);
+        });
+        videoView.start();
     }
 
     private void loginUser() {
-        String username = usernameInput.getText().toString().trim();
+        String email = usernameInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        String query = "SELECT FullName, Role FROM Users WHERE Username = ? AND PasswordHash = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username, password});
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                String fullName = cursor.getString(cursor.getColumnIndexOrThrow("FullName"));
-                String role = cursor.getString(cursor.getColumnIndexOrThrow("Role"));
-                cursor.close();
-
-                // ✅ Lưu FullName vào SharedPreferences
-                SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("FULL_NAME", fullName);
-                editor.putString("USERNAME", username);
-                editor.apply();
-
-                // Chuyển đến màn hình chính
-                Intent intent;
-                if ("admin".equalsIgnoreCase(role)) {
-                    intent = new Intent(Login.this, Admin_panel.class);
-                } else if ("player".equalsIgnoreCase(role)) {
-                    intent = new Intent(Login.this, HomeActivity.class);
-                } else {
-                    Toast.makeText(this, "Unknown role. Contact support.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                cursor.close();
-            }
-        }
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            saveUserData(user);
+                            navigateToHome();
+                        }
+                    } else {
+                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
+    private void saveUserData(FirebaseUser user) {
+        SharedPreferences preferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("FULL_NAME", user.getDisplayName());
+        editor.putString("USERNAME", user.getEmail());
+        editor.apply();
+    }
 
+    private void navigateToHome() {
+        Intent intent = new Intent(Login.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
+    public void redirectToRegister(View view) {
+        startActivity(new Intent(Login.this, Register.class));
+        finish();
+    }
 }
