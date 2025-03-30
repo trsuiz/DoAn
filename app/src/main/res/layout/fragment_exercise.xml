@@ -11,7 +11,7 @@
     android:padding="20dp">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button3"
         android:layout_width="367dp"
         android:layout_height="68dp"
         android:backgroundTint="@color/red"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.989" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button2"
         android:layout_width="367dp"
         android:layout_height="68dp"
         android:backgroundTint="@color/light_blue"
@@ -77,9 +77,11 @@
         android:id="@+id/textView"
         android:layout_width="333dp"
         android:layout_height="127dp"
+        android:layout_gravity="center"
         android:layout_marginStart="40dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="23dp"
+        android:gravity="center"
         android:text="I eat an ___ every morning."
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,23 +89,10 @@
         app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105"
-        android:gravity="center"
-        android:layout_gravity="center"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/apple" />
+        app:layout_constraintVertical_bias="0.385" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button1"
         android:layout_width="367dp"
         android:layout_height="68dp"
         android:backgroundTint="@color/yellow"
@@ -116,4 +105,235 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.692" />
+
+    <GridLayout
+        android:id="@+id/checkboxGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:background="@drawable/checkbox_border"
+        android:paddingBottom="10dp">
+
+        <!-- First row: TextView -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lesson"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="5"
+            android:layout_gravity="center_horizontal|center_vertical" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox1"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox2"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox3"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox4"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox5"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox6"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox7"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox8"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox9"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="16sp"
+                android:gravity="center" />
+
+            <CheckBox
+                android:id="@+id/checkbox10"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+    </GridLayout>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

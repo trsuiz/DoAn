@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.doan.DatabaseHelper;
@@ -24,6 +25,8 @@ public class ExerciseHolder extends AppCompatActivity {
     ViewPager2 viewPager;
     ExercisePagerAdapter adapter;
 
+    private ExerciseViewModel exerciseViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,9 @@ public class ExerciseHolder extends AppCompatActivity {
         db.logAllDatabaseData();
 
         String selectedLesson = getIntent().getStringExtra("selected_lesson");
+
+        // Initialize the ViewModel
+        exerciseViewModel = new ViewModelProvider(this).get(ExerciseViewModel.class);
 
         viewPager = findViewById(R.id.viewPager);
         adapter = new ExercisePagerAdapter(this, new ArrayList<>());

@@ -44,7 +44,11 @@ public class Login extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         loginBtn.setOnClickListener(v -> loginUser());
 
+        DatabaseHelper db = new DatabaseHelper(this);
 
+        /*db.clearAllData();
+        db.insertSampleData();*/
+        db.logAllDatabaseData();
 
 
         VideoView videoView = findViewById(R.id.videoBackground);
@@ -85,6 +89,12 @@ public class Login extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("FULL_NAME", user.getDisplayName());
         editor.putString("USERNAME", user.getEmail());
+
+        // Initialize score to 0 for new user login (or retrieve from SharedPreferences if already exists)
+        if (!preferences.contains("USER_SCORE")) {
+            editor.putInt("USER_SCORE", 0); // Setting score to 0 if this is the user's first time logging in
+        }
+
         editor.apply();
     }
 
