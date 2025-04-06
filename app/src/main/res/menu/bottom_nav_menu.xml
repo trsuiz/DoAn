@@ -9,6 +9,11 @@
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         tools:ignore="HardcodedText" />
+    <item
+        android:id="@+id/nav_voice"
+        android:icon="@drawable/ic_streak"
+        android:title="Voice"
+        tools:ignore="HardcodedText" />
 
     <item
         android:id="@+id/nav_streak"

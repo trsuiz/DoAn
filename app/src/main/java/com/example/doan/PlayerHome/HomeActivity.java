@@ -67,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
                 selectedFragment = new RankingFragment();
             } else if (item.getItemId() == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
+            } else if (item.getItemId() == R.id.nav_voice) {
+                selectedFragment = new VoiceFragment();
             }
 
             // Replace current fragment with the selected fragment
