@@ -148,6 +148,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.insert("Topics", null, values);
     }
+    public void insertStreak(int userID, String startDate, String endDate, int currentStreak, int longestStreak) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("UserID", userID);
+        values.put("StartDate", startDate);
+        values.put("EndDate", endDate);
+        values.put("CurrentStreak", currentStreak);
+        values.put("LongestStreak", longestStreak);
+
+        db.insert("Streaks", null, values);
+    }
+    public void updateStreak(int userID, int newStreak, int longestStreak, String endDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("CurrentStreak", newStreak);
+        values.put("LongestStreak", longestStreak);
+        values.put("EndDate", endDate);
+
+        db.update("Streaks", values, "UserID = ?", new String[]{String.valueOf(userID)});
+    }
 
     public void insertLesson(int topicID, String lessonName, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -204,17 +224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("LearningSessions", null, values);
     }
 
-    public void insertStreak(int userID, String startDate, String endDate, int currentStreak, int longestStreak) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("UserID", userID);
-        values.put("StartDate", startDate);
-        values.put("EndDate", endDate);
-        values.put("CurrentStreak", currentStreak);
-        values.put("LongestStreak", longestStreak);
 
-        db.insert("Streaks", null, values);
-    }
 
     public void insertRole(String roleName) {
         SQLiteDatabase db = this.getWritableDatabase();
