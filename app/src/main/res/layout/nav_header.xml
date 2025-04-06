@@ -20,7 +20,7 @@
         android:id="@+id/adminName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Name"
+        android:text="Admin "
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"

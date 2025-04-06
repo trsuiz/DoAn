@@ -51,6 +51,9 @@ public class Login extends AppCompatActivity {
         db.logAllDatabaseData();
 
 
+
+
+
         VideoView videoView = findViewById(R.id.videoBackground);
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bg_login);
         videoView.setVideoURI(videoUri);
@@ -59,6 +62,8 @@ public class Login extends AppCompatActivity {
             //mp.setVolume(0, 0);
         });
         videoView.start();
+
+         
     }
 
     private void loginUser() {
@@ -76,7 +81,11 @@ public class Login extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             saveUserData(user);
-                            navigateToHome();
+                            if (email.equals("admin@gmail.com")) {
+                                navigateToAdmin();
+                            } else {
+                                navigateToHome();
+                            }
                         }
                     } else {
                         Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -104,8 +113,34 @@ public class Login extends AppCompatActivity {
         finish();
     }
 
+    private void navigateToAdmin() {
+        Intent intent = new Intent(Login.this, Admin_panel.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void redirectToRegister(View view) {
         startActivity(new Intent(Login.this, Register.class));
         finish();
     }
+
+
+
+    /*
+
+    private void checkUserRole(FirebaseUser user) {
+        String email = user.getEmail();
+
+        // Giả sử tài khoản Admin có email cố định
+        if (email != null && email.equals("admin@gmail.com")) {
+            Intent intent = new Intent(Login.this, Admin_panel.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(Login.this, HomeActivity.class);
+            startActivity(intent);
+        }
+        finish();
+    }
+
+     */
 }

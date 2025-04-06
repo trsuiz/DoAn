@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, profileFragment) // Thay đúng ID của container fragment
                 .commit();
-        //KHANG THEM
+        //KHANG THEM hhihihi
 
         /*db = new DatabaseHelper(this);
         database = db.getWritableDatabase();
