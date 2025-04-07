@@ -11,7 +11,7 @@
         tools:ignore="HardcodedText" />
     <item
         android:id="@+id/nav_voice"
-        android:icon="@drawable/ic_streak"
+        android:icon="@drawable/ic_micro"
         android:title="Voice"
         tools:ignore="HardcodedText" />
 

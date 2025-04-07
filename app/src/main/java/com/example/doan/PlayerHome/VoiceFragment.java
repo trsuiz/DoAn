@@ -1,66 +1,146 @@
 package com.example.doan.PlayerHome;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.speech.RecognitionListener;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 
 import com.example.doan.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VoiceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class VoiceFragment extends Fragment {
+    private SpeechRecognizer speechRecognizer;
+    private TextView textSample, textResult, textFeedback;
+    private Button btnStartSpeaking, btnAboutYourself1;
+    private final String sampleSentence = "Hello, Do you know Twen Music?";
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public VoiceFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VoiceFragmnet.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VoiceFragment newInstance(String param1, String param2) {
-        VoiceFragment fragment = new VoiceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_voice, container, false);
+
+        // ✅ Kiểm tra hỗ trợ giọng nói
+        boolean isAvailable = SpeechRecognizer.isRecognitionAvailable(requireContext());
+        Toast.makeText(requireContext(), isAvailable ? "✅ Hỗ trợ giọng nói" : "❌ Không hỗ trợ!", Toast.LENGTH_LONG).show();
+
+        textSample = rootView.findViewById(R.id.textSample);
+        textResult = rootView.findViewById(R.id.textResult);
+        textFeedback = rootView.findViewById(R.id.textFeedback);
+        btnStartSpeaking = rootView.findViewById(R.id.btnStartSpeaking);
+        btnAboutYourself1 = rootView.findViewById(R.id.btnAboutYourself1);
+        // Đảm bảo câu mẫu được hiển thị
+        textSample.setText(sampleSentence);
+        // Ban đầu hiển thị bài học
+        rootView.findViewById(R.id.lessonLayout).setVisibility(View.VISIBLE);
+        rootView.findViewById(R.id.voiceLayout).setVisibility(View.GONE);
+
+        // Khi bấm vào bài học, chuyển sang giao diện Voice
+        btnAboutYourself1.setOnClickListener(v -> {
+            rootView.findViewById(R.id.lessonLayout).setVisibility(View.GONE);
+            rootView.findViewById(R.id.voiceLayout).setVisibility(View.VISIBLE);
+        });
+
+        checkPermission();
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(requireContext());
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                if (matches != null && !matches.isEmpty()) {
+                    String spokenText = matches.get(0);
+                    textResult.setText(spokenText);
+                    checkAnswer(spokenText);
+                }
+            }
+
+            @Override public void onReadyForSpeech(Bundle params) {}
+            @Override public void onBeginningOfSpeech() {}
+            @Override public void onRmsChanged(float rmsdB) {}
+            @Override public void onBufferReceived(byte[] buffer) {}
+            @Override public void onEndOfSpeech() {}
+            @Override
+            public void onEvent(int eventType, Bundle params) {}
+            @Override public void onPartialResults(Bundle partialResults) {}
+            @Override public void onError(int error) {
+                String message;
+                switch (error) {
+                    case SpeechRecognizer.ERROR_AUDIO: message = "🎤 Lỗi âm thanh!"; break;
+                    case SpeechRecognizer.ERROR_CLIENT: message = "⚠️ Lỗi từ client!"; break;
+                    case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS: message = "🚫 Thiếu quyền ghi âm!"; break;
+                    case SpeechRecognizer.ERROR_NETWORK:
+                    case SpeechRecognizer.ERROR_NETWORK_TIMEOUT: message = "🌐 Lỗi mạng!"; break;
+                    case SpeechRecognizer.ERROR_NO_MATCH: message = "❌ Không nhận diện được giọng nói!"; break;
+                    case SpeechRecognizer.ERROR_RECOGNIZER_BUSY: message = "⏳ Bộ nhận diện đang bận!"; break;
+                    case SpeechRecognizer.ERROR_SERVER: message = "🖥️ Lỗi từ server!"; break;
+                    case SpeechRecognizer.ERROR_SPEECH_TIMEOUT: message = "⏳ Không có âm thanh đầu vào!"; break;
+                    default: message = "⚠️ Lỗi không xác định!"; break;
+                }
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+                Log.e("SpeechError", "Mã lỗi: " + error + " - " + message);
+            }
+        });
+
+        // Khi nhấn nút, bắt đầu nhận diện giọng nói
+        btnStartSpeaking.setOnClickListener(v -> startSpeechRecognition());
+        return rootView;
+    }
+
+    // Hàm kiểm tra câu nói đúng hay sai
+    private void checkAnswer(String spokenText) {
+        if (spokenText.equalsIgnoreCase(sampleSentence)) {
+            textFeedback.setText("✅ Chính xác!");
+            textFeedback.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+        } else {
+            textFeedback.setText("❌ Sai! Hãy thử lại.");
+            textFeedback.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+        }
+    }
+
+    // Hàm bắt đầu nhận diện giọng nói
+    private void startSpeechRecognition() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.US.toString());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hãy đọc câu mẫu...");
+        speechRecognizer.startListening(intent);
+
+    }
+
+
+    // Kiểm tra và yêu cầu quyền ghi âm
+    private void checkPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.RECORD_AUDIO}, 1);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_voice, container, false);
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (speechRecognizer != null) {
+            speechRecognizer.destroy();
+        }
     }
 }
