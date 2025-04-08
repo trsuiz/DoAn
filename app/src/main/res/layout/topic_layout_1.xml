@@ -74,6 +74,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Topic 1\n About yourself"
+        android:textStyle="bold|italic"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
