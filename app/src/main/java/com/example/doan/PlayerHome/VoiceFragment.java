@@ -107,7 +107,10 @@ public class VoiceFragment extends Fragment {
 
     // Hàm kiểm tra câu nói đúng hay sai
     private void checkAnswer(String spokenText) {
-        if (spokenText.equalsIgnoreCase(sampleSentence)) {
+        // Chuẩn hoá cả câu mẫu và câu nói
+        String user = spokenText.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
+        String sample = sampleSentence.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
+        if (user.contains(sample)) {
             textFeedback.setText("✅ Chính xác!");
             textFeedback.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         } else {
