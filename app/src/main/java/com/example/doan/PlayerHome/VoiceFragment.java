@@ -111,10 +111,10 @@ public class VoiceFragment extends Fragment {
         String user = spokenText.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
         String sample = sampleSentence.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
         if (user.contains(sample)) {
-            textFeedback.setText("✅ Chính xác!");
+            textFeedback.setText("🎯 Trúng tim đen, à nhầm... câu mẫu!");
             textFeedback.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         } else {
-            textFeedback.setText("❌ Sai! Hãy thử lại.");
+            textFeedback.setText("❌ Sai rồi... giống như lúc bạn tỏ tình mà crush chỉ 'haha' 😔");
             textFeedback.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
         }
     }

@@ -38,18 +38,19 @@
             <RelativeLayout
                 android:background="@drawable/round_back_white_20"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:gravity="center">
+                android:layout_height="70dp">
 
                 <Button
                     android:id="@+id/btnAboutYourself1"
-                    android:layout_width="364dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
                     android:background="@color/transparent"
                     android:text="About yourself: Question 1"
                     android:textColor="@color/white"
                     android:textSize="26sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
