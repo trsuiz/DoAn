@@ -29,7 +29,7 @@ public class VoiceFragment extends Fragment {
     private SpeechRecognizer speechRecognizer;
     private TextView textSample, textResult, textFeedback;
     private Button btnStartSpeaking, btnAboutYourself1;
-    private final String sampleSentence = "Hello, Do you know Twen Music?";
+    private final String sampleSentence = "hi ";
 
 
     @Nullable

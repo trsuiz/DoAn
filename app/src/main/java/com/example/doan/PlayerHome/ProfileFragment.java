@@ -126,11 +126,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Cập nhật FullName sau khi chỉnh sửa
         SharedPreferences preferences = requireActivity().getSharedPreferences("USER_PREFS", Context.MODE_PRIVATE);
-        String fullName = preferences.getString("FULL_NAME", "Guest");
-        usernameTextView.setText(fullName);
+
+        // Lấy lại username (email) để hiển thị
+        String username = preferences.getString("USERNAME", "Guest");
+        usernameTextView.setText(username);
     }
+
 // KHANG THEM
 
 
