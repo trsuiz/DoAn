@@ -9,6 +9,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.RecognitionListener;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -28,9 +29,9 @@ import java.util.Locale;
 public class VoiceFragment extends Fragment {
     private SpeechRecognizer speechRecognizer;
     private TextView textSample, textResult, textFeedback;
-    private Button btnStartSpeaking, btnAboutYourself1;
-    private final String sampleSentence = "hi ";
-
+    private Button btnStartSpeaking, btnAboutYourself1, btnAboutYourself2, btnAboutYourself3, btnAboutYourself4, btnAboutYourself5;
+    private String sampleSentence;
+    private final ArrayList<String> sentenceList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -47,16 +48,64 @@ public class VoiceFragment extends Fragment {
         textFeedback = rootView.findViewById(R.id.textFeedback);
         btnStartSpeaking = rootView.findViewById(R.id.btnStartSpeaking);
         btnAboutYourself1 = rootView.findViewById(R.id.btnAboutYourself1);
+        btnAboutYourself2 = rootView.findViewById(R.id.btnAboutYourself2);
+        btnAboutYourself3 = rootView.findViewById(R.id.btnAboutYourself3);
+        btnAboutYourself4 = rootView.findViewById(R.id.btnAboutYourself4);
+        btnAboutYourself5 = rootView.findViewById(R.id.btnAboutYourself5);
+        LinearLayout layoutQuestionButtons = rootView.findViewById(R.id.layoutQuestionButtons);
+
+        View lessonLayout = rootView.findViewById(R.id.lessonLayout);
+        View voiceLayout = rootView.findViewById(R.id.voiceLayout);
+        // 👉 Thêm câu mẫu
+        addSampleSentences();
+
+        // 👉 Random câu mẫu mỗi lần vào bài học
+        sampleSentence = sentenceList.get((int)(Math.random() * sentenceList.size()));
+        textSample.setText(sampleSentence);
+
+
         // Đảm bảo câu mẫu được hiển thị
         textSample.setText(sampleSentence);
-        // Ban đầu hiển thị bài học
-        rootView.findViewById(R.id.lessonLayout).setVisibility(View.VISIBLE);
-        rootView.findViewById(R.id.voiceLayout).setVisibility(View.GONE);
 
-        // Khi bấm vào bài học, chuyển sang giao diện Voice
+        // Gắn sự kiện cho tất cả các nút (ví dụ chung)
         btnAboutYourself1.setOnClickListener(v -> {
-            rootView.findViewById(R.id.lessonLayout).setVisibility(View.GONE);
-            rootView.findViewById(R.id.voiceLayout).setVisibility(View.VISIBLE);
+            sampleSentence = "Hello";
+            textSample.setText(sampleSentence);
+            lessonLayout.setVisibility(View.GONE);
+            voiceLayout.setVisibility(View.VISIBLE);
+            layoutQuestionButtons.setVisibility(View.GONE);
+        });
+
+        btnAboutYourself2.setOnClickListener(v -> {
+            sampleSentence = "What is your name";
+            textSample.setText(sampleSentence);
+            lessonLayout.setVisibility(View.GONE);
+            voiceLayout.setVisibility(View.VISIBLE);
+            layoutQuestionButtons.setVisibility(View.GONE);
+        });
+
+        btnAboutYourself3.setOnClickListener(v -> {
+            sampleSentence = "How old are you";
+            textSample.setText(sampleSentence);
+            lessonLayout.setVisibility(View.GONE);
+            voiceLayout.setVisibility(View.VISIBLE);
+            layoutQuestionButtons.setVisibility(View.GONE);
+        });
+
+        btnAboutYourself4.setOnClickListener(v -> {
+            sampleSentence = "Where are you from?";
+            textSample.setText(sampleSentence);
+            lessonLayout.setVisibility(View.GONE);
+            voiceLayout.setVisibility(View.VISIBLE);
+            layoutQuestionButtons.setVisibility(View.GONE);
+        });
+
+        btnAboutYourself5.setOnClickListener(v -> {
+            sampleSentence = "Do you like singing?";
+            textSample.setText(sampleSentence);
+            lessonLayout.setVisibility(View.GONE);
+            voiceLayout.setVisibility(View.VISIBLE);
+            layoutQuestionButtons.setVisibility(View.GONE);
         });
 
         checkPermission();
@@ -104,6 +153,14 @@ public class VoiceFragment extends Fragment {
         btnStartSpeaking.setOnClickListener(v -> startSpeechRecognition());
         return rootView;
     }
+    // 👉 Danh sách câu mẫu
+    private void addSampleSentences() {
+        sentenceList.add("Hello");
+        sentenceList.add("What is your name");
+        sentenceList.add("How old are you");
+        sentenceList.add("Where are you from?");
+        sentenceList.add("Do you like singing?");
+    }
 
     // Hàm kiểm tra câu nói đúng hay sai
     private void checkAnswer(String spokenText) {
@@ -111,7 +168,7 @@ public class VoiceFragment extends Fragment {
         String user = spokenText.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
         String sample = sampleSentence.trim().toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
         if (user.contains(sample)) {
-            textFeedback.setText("🎯 Trúng tim đen, à nhầm... câu mẫu!");
+            textFeedback.setText("🧠 Chuẩn không cần chỉnh, chỉnh là sai luôn!");
             textFeedback.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         } else {
             textFeedback.setText("❌ Sai rồi... giống như lúc bạn tỏ tình mà crush chỉ 'haha' 😔");

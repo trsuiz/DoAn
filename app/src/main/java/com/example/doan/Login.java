@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -37,7 +39,7 @@ public class Login extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInClient mGoogleSignInClient;
-
+    private ImageView togglePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,22 @@ public class Login extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         loginBtn.setOnClickListener(v -> loginUser());
 
-        DatabaseHelper db = new DatabaseHelper(this);
 
+        DatabaseHelper db = new DatabaseHelper(this);
+        togglePassword = findViewById(R.id.show_password_toggle);
+
+        togglePassword.setOnClickListener(v -> {
+            if (passwordInput.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                // Hiện mật khẩu
+                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                togglePassword.setImageResource(R.drawable.ic_eye_open); // icon con mắt mở
+            } else {
+                // Ẩn mật khẩu
+                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                togglePassword.setImageResource(R.drawable.ic_eye_closed); // icon con mắt đóng
+            }
+            passwordInput.setSelection(passwordInput.getText().length()); // Giữ con trỏ ở cuối
+        });
         /*db.clearAllData();
         db.insertSampleData();*/
         db.logAllDatabaseData();

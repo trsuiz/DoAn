@@ -59,6 +59,19 @@
             android:background="@drawable/rounded_corner"
             android:padding="18dp"
             android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/confirm_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Confirm Password"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_corner"
+            android:padding="18dp"
+            android:inputType="textPassword" />
+
 
         <Button
             android:id="@+id/register_btn"

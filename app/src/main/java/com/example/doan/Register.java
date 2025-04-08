@@ -20,6 +20,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class Register extends AppCompatActivity {
 
     private EditText emailInput, passwordInput, fullNameInput;
+    private EditText confirmPasswordInput;
     private Button registerBtn;
     private FirebaseAuth mAuth;
 
@@ -38,6 +39,7 @@ public class Register extends AppCompatActivity {
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.password_input);
         fullNameInput = findViewById(R.id.fullname_input);
+        confirmPasswordInput = findViewById(R.id.confirm_password_input);
         registerBtn = findViewById(R.id.register_btn);
 
         registerBtn.setOnClickListener(v -> registerUser());
@@ -50,6 +52,12 @@ public class Register extends AppCompatActivity {
 
         if (email.isEmpty() || password.isEmpty() || fullName.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String confirmPassword = confirmPasswordInput.getText().toString().trim();
+
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
 

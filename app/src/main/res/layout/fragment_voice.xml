@@ -26,32 +26,111 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="40dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:spacing="10dp"
+            android:id="@+id/layoutQuestionButtons">
 
-
+            <!-- Nút 1 -->
             <RelativeLayout
                 android:background="@drawable/round_back_white_20"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="70dp"
+                android:layout_marginBottom="16dp">
 
                 <Button
                     android:id="@+id/btnAboutYourself1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
                     android:background="@color/transparent"
                     android:text="About yourself: Question 1"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:gravity="center" />
             </RelativeLayout>
+
+            <!-- Nút 2 -->
+            <RelativeLayout
+                android:background="@drawable/round_back_white_20"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnAboutYourself2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="About yourself: Question 2"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <!-- Nút 3 -->
+            <RelativeLayout
+                android:background="@drawable/round_back_white_20"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnAboutYourself3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="About yourself: Question 3"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <!-- Nút 4 -->
+            <RelativeLayout
+                android:background="@drawable/round_back_white_20"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnAboutYourself4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="About yourself: Question 4"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <!-- Nút 5 -->
+            <RelativeLayout
+                android:background="@drawable/round_back_white_20"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnAboutYourself5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="About yourself: Question 5"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 
