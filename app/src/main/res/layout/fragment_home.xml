@@ -1,201 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primary"
-    android:orientation="vertical"
-    tools:context=".PlayerHome.HomeFragment">
+    android:background="@drawable/path_level"
+    android:id="@+id/mainLayout"> <!-- Hình nền của bản đồ -->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="40sp"
-            android:text="Lesson"
-            android:layout_centerInParent="true"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="30sp"/>
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!-- Thanh trạng thái trên cùng -->
     <LinearLayout
-
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical">
+        android:background="@color/armadillo_dark_yellow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
+        <!-- Ảnh đại diện -->
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar" />
 
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center">
+        <!-- Nút bấm trái tim (Heart) -->
+        <ImageButton
+            android:id="@+id/btnHeart"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/heart_icon"
+            android:contentDescription="Số tim còn lại"/>
 
-            <Button
-                android:id="@+id/btnAboutYourself1"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="About yourself: Lesson 1"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/txtHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="185dp"
+            android:fontFamily="@font/agbalumo"
+            android:text="5"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
+        <!-- Nút bấm Streak -->
+        <ImageButton
+            android:id="@+id/btnStreak"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Chuỗi"
+            android:scaleType="fitCenter"
+            android:src="@drawable/streak_icon" />
 
-            <Button
-                android:id="@+id/btnAboutYourself2"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="About yourself: Lesson 2"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnAboutYourself3"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="About yourself: Lesson 3"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnAboutYourself4"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="About yourself: Lesson 4"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnDailyRoutines1"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="Daily routines: Lesson 1"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnDailyRoutines2"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="Daily routines: Lesson 2"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnDailyRoutines3"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="Daily routines: Lesson 3"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnDailyRoutines4"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="Daily routines: Lesson 4"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/round_back_white_20"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <Button
-                android:id="@+id/btnFood1"
-                android:layout_width="364dp"
-                android:layout_height="match_parent"
-                android:background="@color/transparent"
-                android:text="Food: Lesson 1"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/txtStreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/agbalumo"
+            android:text="365"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
     </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    <!-- ViewPager2 to handle the swipe between different topics -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:orientation="vertical" />
+
+    <!-- Thanh công cụ dưới cùng -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/armadillo_dark_yellow"
+        android:padding="10dp">
+
+        <!-- Nút bấm mở cửa hàng -->
+        <ImageButton
+            android:id="@+id/btnShop"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Mở cửa hàng"
+            android:scaleType="fitCenter"
+            android:src="@drawable/shop_icon" />
+
+
+        <!-- Nút bấm mở cài đặt -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/setting_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cài đặt"/>
+
+    </LinearLayout>
+</RelativeLayout>

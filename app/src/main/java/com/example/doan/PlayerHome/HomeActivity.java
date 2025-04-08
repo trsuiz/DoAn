@@ -37,6 +37,11 @@ public class HomeActivity extends AppCompatActivity {
         //KHANG THEM hhihihi
 
         /*db = new DatabaseHelper(this);
+        db.clearAllData();
+        db.insertSampleData();*/
+        /*db.logAllDatabaseData();*/
+
+        /*db = new DatabaseHelper(this);
         database = db.getWritableDatabase();
         db.dropTables(database);
         db.displayAllTablesAndData();*/
