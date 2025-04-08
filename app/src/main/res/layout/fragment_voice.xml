@@ -43,8 +43,8 @@
 
                 <Button
                     android:id="@+id/btnAboutYourself1"
-                    android:layout_width="364dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
                     android:background="@color/transparent"
                     android:text="About yourself: Question 1"
                     android:textColor="@color/white"

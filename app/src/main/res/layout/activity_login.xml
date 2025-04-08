@@ -70,6 +70,13 @@
             android:layout_marginTop="32dp"
             android:textSize="20sp"/>
 
+        <Button
+            android:id="@+id/google_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in with Google" />
+
+
         <TextView
             android:id="@+id/register_redirect"
             android:layout_width="wrap_content"

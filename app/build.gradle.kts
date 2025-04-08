@@ -38,6 +38,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-firestore")
 
+    implementation ("com.google.android.gms:play-services-auth")
+    implementation ("com.google.firebase:firebase-auth")
+
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
