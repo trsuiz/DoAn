@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/backgrounf_voice"
     android:orientation="vertical">
 
     <!-- Giao diện bài học -->
@@ -90,7 +90,7 @@
             android:text="Bạn đã nói:"
             android:textSize="18sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@android:color/white"/>
 
         <!-- Feedback kết quả chính xác hay sai -->
         <TextView
