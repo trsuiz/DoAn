@@ -104,7 +104,11 @@ public class ProfileFragment extends Fragment {
         String fullName = preferences.getString("USERNAME", "Guest"); // Mặc định là "Guest"
 
         usernameTextView.setText(fullName); // Hiển thị lên TextView
-
+        // ✅ Lấy và hiển thị streak
+        SharedPreferences streakPrefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        int streakCount = streakPrefs.getInt("streakCount", 1);
+        TextView txtStreak = view.findViewById(R.id.txtProfileStreak);
+        txtStreak.setText("Current Streak: " + streakCount + " days");
 
 
 
@@ -131,6 +135,12 @@ public class ProfileFragment extends Fragment {
         // Lấy lại username (email) để hiển thị
         String username = preferences.getString("USERNAME", "Guest");
         usernameTextView.setText(username);
+
+        // Cập nhật streak luôn nếu cần
+        SharedPreferences streakPrefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        int streakCount = streakPrefs.getInt("streakCount", 1);
+        TextView txtStreak = getView().findViewById(R.id.txtProfileStreak);
+        txtStreak.setText("Current Streak: " + streakCount + " days");
     }
 
 // KHANG THEM
