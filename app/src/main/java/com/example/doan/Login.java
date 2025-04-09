@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -78,6 +79,10 @@ public class Login extends AppCompatActivity {
         db.insertSampleData();*/
         db.logAllDatabaseData();
 
+        TextView forgotPasswordText = findViewById(R.id.forgot_password_text);
+        forgotPasswordText.setOnClickListener(v -> showForgotPasswordDialog());
+
+
 
 
 
@@ -109,16 +114,79 @@ public class Login extends AppCompatActivity {
 
 
     }
+    private void showForgotPasswordDialog() {
+        // Tạo một EditText để nhập email
+        final EditText emailInput = new EditText(this);
+        emailInput.setHint("example@gmail.com");
+        emailInput.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        emailInput.setPadding(50, 40, 50, 40);
+
+
+        // Lấy sẵn email đang có nếu người dùng đã nhập rồi
+        String preFilledEmail = usernameInput.getText().toString().trim();
+        if (!preFilledEmail.isEmpty()) {
+            emailInput.setText(preFilledEmail);
+        }
+
+        // Tạo AlertDialog đẹp hơn
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("🔐 Quên mật khẩu?")
+                .setMessage("Nhập email của bạn để nhận liên kết đặt lại mật khẩu:")
+                .setView(emailInput)
+                .setPositiveButton("Gửi", (dialog, which) -> {
+                    String email = emailInput.getText().toString().trim();
+                    if (!email.isEmpty()) {
+                        mAuth.sendPasswordResetEmail(email)
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(Login.this, "✔ Đã gửi email đặt lại mật khẩu!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(Login.this, "❌ Không thể gửi email. Vui lòng kiểm tra lại.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(Login.this, "⚠ Vui lòng nhập email", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
+
 
     private void loginUser() {
         String email = usernameInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        // Ràng buộc email không được để trống
+        if (email.isEmpty()) {
+            usernameInput.setError("Vui lòng nhập email");
+            usernameInput.requestFocus();
             return;
         }
 
+        // Kiểm tra định dạng email
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            usernameInput.setError("Email không hợp lệ");
+            usernameInput.requestFocus();
+            return;
+        }
+
+        // Ràng buộc mật khẩu không được để trống
+        if (password.isEmpty()) {
+            passwordInput.setError("Vui lòng nhập mật khẩu");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        // Mật khẩu tối thiểu 6 ký tự
+        if (password.length() < 6) {
+            passwordInput.setError("Mật khẩu phải có ít nhất 6 ký tự");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        // Nếu hợp lệ thì tiếp tục đăng nhập
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -132,10 +200,11 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     } else {
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
 
     private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

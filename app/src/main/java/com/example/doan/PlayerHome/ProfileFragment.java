@@ -95,6 +95,9 @@ public class ProfileFragment extends Fragment {
 
 
 
+
+
+
         // ✅ Mở EditProfileActivity khi nhấn nút
         editProfileBtn.setOnClickListener(v -> EditProfileActivity.openEditProfile(getActivity()));
 
@@ -109,8 +112,6 @@ public class ProfileFragment extends Fragment {
         int streakCount = streakPrefs.getInt("streakCount", 1);
         TextView txtStreak = view.findViewById(R.id.txtProfileStreak);
         txtStreak.setText("Current Streak: " + streakCount + " days");
-
-
 
         mAuth = FirebaseAuth.getInstance();
 
