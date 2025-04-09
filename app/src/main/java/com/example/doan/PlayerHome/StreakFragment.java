@@ -15,6 +15,7 @@ import com.example.doan.R;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.widget.TextView;
+import java.util.Date;
 
 public class StreakFragment extends Fragment {
 
@@ -22,6 +23,7 @@ public class StreakFragment extends Fragment {
     private static final String PREFS_NAME = "UserPrefs";
     private static final String LAST_LOGIN_DATE = "lastLoginDate";
     private static final String STREAK_COUNT = "streakCount";
+    private static final String START_STREAK_DATE = "startStreakDate";
 
     public StreakFragment() {
         // Required empty public constructor
@@ -46,23 +48,43 @@ public class StreakFragment extends Fragment {
 
         // Lấy giá trị ngày tháng dưới dạng String (dùng định dạng yyyy-MM-dd)
         String lastLoginDateString = sharedPreferences.getString(LAST_LOGIN_DATE, "");
+        String startStreakDateString = sharedPreferences.getString(START_STREAK_DATE, "");
         int streakCount = sharedPreferences.getInt(STREAK_COUNT, 1);  // Default to 1 if no streak found
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         // Get today's date as String (yyyy-MM-dd format)
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String todayDate = sdf.format(calendar.getTime());
-
+        String todayDate = sdf.format(new Date());
+        boolean isNewDay = !todayDate.equals(lastLoginDateString);
         // Check if the streak should be updated
-        if (lastLoginDateString.isEmpty() || !lastLoginDateString.equals(todayDate)) {
-            // If the last login was not today or it's the first time logging in, reset or increment streak
-            if (!lastLoginDateString.equals(todayDate)) {
-                streakCount++;  // Increase streak count if it's a new day
+        if (lastLoginDateString.isEmpty()) {
+            // 👶 Lần đầu đăng nhập
+            streakCount = 1;
+            editor.putString(LAST_LOGIN_DATE, todayDate);
+            editor.putString(START_STREAK_DATE, todayDate);
+            editor.putInt(STREAK_COUNT, 1);
+            editor.apply();
+
+        } else if (isNewDay) {
+            // 🆕 Ngày mới → tăng streak
+            streakCount++;
+            editor.putString(LAST_LOGIN_DATE, todayDate);
+            editor.putInt(STREAK_COUNT, streakCount);
+
+            if (startStreakDateString.isEmpty()) {
+                editor.putString(START_STREAK_DATE, todayDate);
             }
 
-            // Update SharedPreferences with the new streak count and today's date
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(LAST_LOGIN_DATE, todayDate);  // Save today's date as last login date (as String)
-            editor.putInt(STREAK_COUNT, streakCount);       // Update streak count
+            editor.apply();
+
+
+            editor.putString(LAST_LOGIN_DATE, todayDate);
+            editor.putInt(STREAK_COUNT, streakCount);
+
+            // ✅ Nếu chưa có ngày bắt đầu streak thì lưu lại
+            if (startStreakDateString.isEmpty()) {
+                editor.putString(START_STREAK_DATE, lastLoginDateString);
+            }
+
             editor.apply();
         } else {
             // If logged in today already, don't change streak

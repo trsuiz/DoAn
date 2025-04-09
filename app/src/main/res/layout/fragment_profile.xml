@@ -123,7 +123,14 @@
                     android:text="Current Streak: 5 days"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
-
+                <TextView
+                    android:id="@+id/txtStreakDateRange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Streak từ: 2024-04-05 → 2024-04-09"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

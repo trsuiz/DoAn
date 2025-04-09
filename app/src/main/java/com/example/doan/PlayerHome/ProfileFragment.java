@@ -20,6 +20,10 @@ import com.example.doan.Login;
 import com.example.doan.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
@@ -110,8 +114,16 @@ public class ProfileFragment extends Fragment {
         // ✅ Lấy và hiển thị streak
         SharedPreferences streakPrefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         int streakCount = streakPrefs.getInt("streakCount", 1);
+        String startDate = streakPrefs.getString("startStreakDate", "N/A");
+        // Lấy ngày hôm nay
+        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
+
         TextView txtStreak = view.findViewById(R.id.txtProfileStreak);
         txtStreak.setText("Current Streak: " + streakCount + " days");
+
+        // 🔥 Gán TextView mới cho khoảng thời gian streak
+        TextView txtStreakRange = view.findViewById(R.id.txtStreakDateRange);
+        txtStreakRange.setText("Streak từ: " + startDate + " → " + today);
 
         mAuth = FirebaseAuth.getInstance();
 
