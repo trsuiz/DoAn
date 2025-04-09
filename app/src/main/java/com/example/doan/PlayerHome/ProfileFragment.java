@@ -95,6 +95,9 @@ public class ProfileFragment extends Fragment {
 
 
 
+
+
+
         // ✅ Mở EditProfileActivity khi nhấn nút
         editProfileBtn.setOnClickListener(v -> EditProfileActivity.openEditProfile(getActivity()));
 
@@ -104,8 +107,6 @@ public class ProfileFragment extends Fragment {
         String fullName = preferences.getString("USERNAME", "Guest"); // Mặc định là "Guest"
 
         usernameTextView.setText(fullName); // Hiển thị lên TextView
-
-
 
 
         mAuth = FirebaseAuth.getInstance();

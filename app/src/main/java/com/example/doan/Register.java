@@ -76,18 +76,55 @@ public class Register extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String fullName = fullNameInput.getText().toString().trim();
-
-        if (email.isEmpty() || password.isEmpty() || fullName.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
-        }
         String confirmPassword = confirmPasswordInput.getText().toString().trim();
 
-        if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+        // Ràng buộc email
+        if (email.isEmpty()) {
+            emailInput.setError("Vui lòng nhập email");
+            emailInput.requestFocus();
             return;
         }
 
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.setError("Email không hợp lệ");
+            emailInput.requestFocus();
+            return;
+        }
+
+        // Ràng buộc họ tên
+        if (fullName.isEmpty()) {
+            fullNameInput.setError("Vui lòng nhập họ tên");
+            fullNameInput.requestFocus();
+            return;
+        }
+
+        // Ràng buộc mật khẩu
+        if (password.isEmpty()) {
+            passwordInput.setError("Vui lòng nhập mật khẩu");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            passwordInput.setError("Mật khẩu phải có ít nhất 6 ký tự");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        // Xác nhận mật khẩu
+        if (confirmPassword.isEmpty()) {
+            confirmPasswordInput.setError("Vui lòng xác nhận mật khẩu");
+            confirmPasswordInput.requestFocus();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            confirmPasswordInput.setError("Mật khẩu không khớp");
+            confirmPasswordInput.requestFocus();
+            return;
+        }
+
+        // Đăng ký nếu hợp lệ
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -99,17 +136,18 @@ public class Register extends AppCompatActivity {
                             user.updateProfile(profileUpdates)
                                     .addOnCompleteListener(profileTask -> {
                                         if (profileTask.isSuccessful()) {
-                                            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(Register.this, Login.class));
                                             finish();
                                         }
                                     });
                         }
                     } else {
-                        Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Đăng ký thất bại. Email có thể đã tồn tại.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
 
     public void redirectToLogin(View view) {
         startActivity(new Intent(Register.this, Login.class));

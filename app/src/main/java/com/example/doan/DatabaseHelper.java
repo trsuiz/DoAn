@@ -627,6 +627,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public int getTotalScoreByUserId(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int totalScore = 0;
+
+        Cursor cursor = db.rawQuery(
+                "SELECT SUM(Score) FROM Scores WHERE UserID = ?",
+                new String[]{String.valueOf(userId)}
+        );
+
+        if (cursor.moveToFirst()) {
+            totalScore = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+
+        return totalScore;
+    }
+
+    public int getUserScoreByEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT score FROM users WHERE email = ?", new String[]{email});
+        int score = 0;
+        if (cursor.moveToFirst()) {
+            score = cursor.getInt(0);
+        }
+        cursor.close();
+        return score;
+    }
+
+    public int getUserIdByEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT UserID FROM Users WHERE Email = ?", new String[]{email});
+        int userId = -1;
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return userId;
+    }
+
+
+
+
+
+
+
 
 
 

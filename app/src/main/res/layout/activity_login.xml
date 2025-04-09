@@ -16,10 +16,14 @@
         android:scaleY="1.45" />
 
     <!-- Overlay to improve readability -->
+    <!-- Màu đen trong suốt -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        /> <!-- Màu đen trong suốt -->
+        android:background="#04000000"
+        android:clickable="false"
+        android:focusable="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,6 +70,7 @@
                 android:paddingBottom="18dp"
                 android:inputType="textPassword" />
 
+
             <ImageView
                 android:id="@+id/show_password_toggle"
                 android:layout_width="48dp"
@@ -78,6 +83,20 @@
                 android:contentDescription="Toggle Password Visibility"
                 android:src="@drawable/ic_eye_closed" />
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/forgot_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quên mật khẩu?"
+            android:textColor="@color/dark_red"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
 
         <Button
             android:id="@+id/login_btn"
