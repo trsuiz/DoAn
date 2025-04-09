@@ -47,31 +47,68 @@
             android:padding="18dp"
             android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/password_input"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_corner"
-            android:padding="18dp"
-            android:inputType="textPassword" />
-        <EditText
-            android:id="@+id/confirm_password_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Confirm Password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="20sp"
-            android:background="@drawable/rounded_corner"
-            android:padding="18dp"
-            android:inputType="textPassword" />
+            android:layout_marginTop="16dp">
 
+            <EditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_corner"
+                android:padding="18dp"
+                android:inputType="textPassword"
+                android:paddingEnd="48dp" />
+
+            <ImageView
+                android:id="@+id/password_toggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_eye_closed"
+                android:contentDescription="Toggle Password" />
+        </FrameLayout>
+
+        <!-- CONFIRM PASSWORD -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/confirm_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirm Password"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp"
+                android:background="@drawable/rounded_corner"
+                android:padding="18dp"
+                android:inputType="textPassword"
+                android:paddingEnd="48dp" />
+
+            <ImageView
+                android:id="@+id/confirm_password_toggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_eye_closed"
+                android:contentDescription="Toggle Confirm Password" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/register_btn"
