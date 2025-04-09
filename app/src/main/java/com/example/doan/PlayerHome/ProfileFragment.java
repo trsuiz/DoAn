@@ -114,16 +114,20 @@ public class ProfileFragment extends Fragment {
         // ✅ Lấy và hiển thị streak
         SharedPreferences streakPrefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         int streakCount = streakPrefs.getInt("streakCount", 1);
-        String startDate = streakPrefs.getString("startStreakDate", "N/A");
+        // Tính ngày bắt đầu streak: hôm nay - (streakCount - 1)
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -(streakCount - 1));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String startStreakDate = sdf.format(calendar.getTime());
         // Lấy ngày hôm nay
-        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
+        String today = sdf.format(Calendar.getInstance().getTime());
 
         TextView txtStreak = view.findViewById(R.id.txtProfileStreak);
         txtStreak.setText("Current Streak: " + streakCount + " days");
 
         // 🔥 Gán TextView mới cho khoảng thời gian streak
         TextView txtStreakRange = view.findViewById(R.id.txtStreakDateRange);
-        txtStreakRange.setText("Streak từ: " + startDate + " → " + today);
+        txtStreakRange.setText("Streak bắt đầu từ: " + startStreakDate + " → " + today);
 
         mAuth = FirebaseAuth.getInstance();
 
