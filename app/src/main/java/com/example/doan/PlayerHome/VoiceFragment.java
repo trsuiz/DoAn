@@ -52,6 +52,7 @@ public class VoiceFragment extends Fragment {
         btnAboutYourself3 = rootView.findViewById(R.id.btnAboutYourself3);
         btnAboutYourself4 = rootView.findViewById(R.id.btnAboutYourself4);
         btnAboutYourself5 = rootView.findViewById(R.id.btnAboutYourself5);
+        Button btnBack = rootView.findViewById(R.id.btnBackToLesson);
         LinearLayout layoutQuestionButtons = rootView.findViewById(R.id.layoutQuestionButtons);
 
         View lessonLayout = rootView.findViewById(R.id.lessonLayout);
@@ -62,10 +63,14 @@ public class VoiceFragment extends Fragment {
         // 👉 Random câu mẫu mỗi lần vào bài học
         sampleSentence = sentenceList.get((int)(Math.random() * sentenceList.size()));
         textSample.setText(sampleSentence);
-
+        layoutQuestionButtons.setVisibility(View.VISIBLE);
 
         // Đảm bảo câu mẫu được hiển thị
-        textSample.setText(sampleSentence);
+        btnBack.setOnClickListener(v -> {
+            voiceLayout.setVisibility(View.GONE);              // Ẩn giao diện voice
+            lessonLayout.setVisibility(View.VISIBLE);          // Hiện lại lesson layout
+            layoutQuestionButtons.setVisibility(View.VISIBLE); // Hiện lại các nút câu hỏi
+        });
 
         // Gắn sự kiện cho tất cả các nút (ví dụ chung)
         btnAboutYourself1.setOnClickListener(v -> {

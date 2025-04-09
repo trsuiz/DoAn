@@ -191,6 +191,16 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="@android:color/holo_blue_light"
             />
+        <Button
+            android:id="@+id/btnBackToLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⬅ Quay lại"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
 </LinearLayout>
